@@ -1,6 +1,6 @@
-import * as THREE from 'https://unpkg.com/three@0.128.0/build/three.module.js';
-import { GLTFLoader } from 'https://unpkg.com/three@0.128.0/examples/jsm/loaders/GLTFLoader.js';
-import { OrbitControls } from 'https://unpkg.com/three@0.128.0/examples/jsm/controls/OrbitControls.js';
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 /* global TWEEN */  // Declare TWEEN as a global variable since we're using the CDN version
 
