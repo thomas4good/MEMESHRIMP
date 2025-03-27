@@ -527,9 +527,20 @@ function updateShrimp(shrimpType) {
 }
 
 function loadShrimpModel(modelPath, color, scale = 2) {
+    // Debug the path being used
+    console.log('Attempting to load model from:', modelPath);
+    
     const loader = new THREE.GLTFLoader();
+    
+    // Make sure the path is absolute when on GitHub Pages
+    const fullPath = window.location.hostname === 'thomas4good.github.io' 
+        ? `/MEMESHRIMP/public/models/3dpea.com_obj_1_18.glb`
+        : `/public/models/3dpea.com_obj_1_18.glb`;
+    
+    console.log('Using full path:', fullPath);
+
     loader.load(
-        modelPath,
+        fullPath,  // Use the corrected path instead of modelPath
         (gltf) => {
             if (shrimp) {
                 scene.remove(shrimp);
