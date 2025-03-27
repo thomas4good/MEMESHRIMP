@@ -1,0 +1,16 @@
+{
+  "name": "shrimp-personality",
+  "version": "1.0.0",
+  "description": "A silly Three.js website that displays your shrimp personality",
+  "main": "index.js",
+  "scripts": {
+    "start": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "three": "^0.162.0"
+  },
+  "devDependencies": {
+    "vite": "^5.1.4"
+  }
+} 

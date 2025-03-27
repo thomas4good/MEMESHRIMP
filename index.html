@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shrimp Personality Display</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="canvas-container"></div>
+    
+    <div id="ui-overlay">
+        <div class="top-controls">
+            <button id="share-shrimp" class="icon-button" aria-label="Share">↗</button>
+            <button id="toggle-sound" class="icon-button" aria-label="Toggle Sound">🔊</button>
+        </div>
+        
+        <div id="result" class="hidden">
+            <div class="result-text">
+                <h2 id="shrimp-type"></h2>
+                <p id="description"></p>
+            </div>
+            
+            <div class="action-buttons">
+                <button id="previous-shrimp" class="pill-button hidden" aria-label="Previous">←</button>
+                <button id="try-again" class="pill-button">New Shrimp</button>
+            </div>
+        </div>
+
+        <button id="discover-button" class="discover-button">Discover Your Shrimp</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>
+    <script type="module" src="main.js"></script>
+</body>
+</html> 
