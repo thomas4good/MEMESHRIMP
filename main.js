@@ -16,6 +16,9 @@ const particleCount = 1000;
 // Rainbow effect for special shrimp
 let rainbowHue = 0;
 
+// Add this at the top with other global variables
+const baseURL = window.location.hostname === 'thomas4good.github.io' ? '/MEMESHRIMP' : '';
+
 // Shrimp personality types and their properties
 const shrimpTypes = [
     {
@@ -23,7 +26,7 @@ const shrimpTypes = [
         color: "#FF69B4",
         description: "You're the life of the party! Always ready to dance and make new friends. Your sparkly personality lights up any room! 🎉",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 2,
         rotationSpeed: 0.02
     },
@@ -32,7 +35,7 @@ const shrimpTypes = [
         color: "#4169E1",
         description: "Professional and focused, you're always wearing a tiny suit and carrying a briefcase. Time is money, and you're swimming in success! 💼",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 1.8,
         rotationSpeed: 0.01
     },
@@ -41,7 +44,7 @@ const shrimpTypes = [
         color: "#2F4F4F",
         description: "Stealthy and mysterious, you're always sneaking around in the shadows. Your moves are swift and silent! 🥷",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 1.5,
         rotationSpeed: 0.03
     },
@@ -50,7 +53,7 @@ const shrimpTypes = [
         color: "#FFA500",
         description: "Totally tubular! You're always catching waves and living the beach life. Cowabunga, dude! 🏄‍♂️",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 2.2,
         rotationSpeed: 0.015
     },
@@ -59,7 +62,7 @@ const shrimpTypes = [
         color: "#FF4500",
         description: "Master of the underwater kitchen! Your culinary creations are legendary, even if they're mostly seaweed. Bon appétit! 👨‍🍳",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 1.7,
         rotationSpeed: 0.012
     },
@@ -68,7 +71,7 @@ const shrimpTypes = [
         color: "#9370DB",
         description: "Always experimenting and discovering! Your brilliant mind is constantly bubbling with new ideas. For science! 🔬",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 1.6,
         rotationSpeed: 0.008
     },
@@ -77,7 +80,7 @@ const shrimpTypes = [
         color: "#FF1493",
         description: "Creative and expressive, you paint the ocean with your colorful personality! Your masterpiece is always in progress. 🎨",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 1.9,
         rotationSpeed: 0.014
     },
@@ -86,7 +89,7 @@ const shrimpTypes = [
         color: "#98FB98",
         description: "Zen and peaceful, you're always finding your inner balance. Your shrimp pose is perfect! 🧘‍♂️",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 1.4,
         rotationSpeed: 0.006
     },
@@ -95,7 +98,7 @@ const shrimpTypes = [
         color: "#FF00FF",
         description: "Living life in the fast lane! Your electric personality and killer moves make you the star of the ocean! 🎸",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 2.1,
         rotationSpeed: 0.025
     },
@@ -104,7 +107,7 @@ const shrimpTypes = [
         color: "#8B4513",
         description: "Always on the case! Your keen eye for detail helps you solve the ocean's mysteries. Elementary, my dear shrimp! 🔍",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 1.6,
         rotationSpeed: 0.009
     },
@@ -113,7 +116,7 @@ const shrimpTypes = [
         color: "#00CED1",
         description: "Reaching for the stars! You're always dreaming of exploring the great beyond. To infinity and beyond! 🚀",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 1.8,
         rotationSpeed: 0.016
     },
@@ -122,7 +125,7 @@ const shrimpTypes = [
         color: "#8B0000",
         description: "Arr matey! You're the most feared shrimp in the seven seas! Your treasure map leads to endless adventures! 🏴‍☠️",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 2.0,
         rotationSpeed: 0.018
     },
@@ -131,7 +134,7 @@ const shrimpTypes = [
         color: "#8B4513",
         description: "Deep in thought, you ponder the mysteries of the ocean. 'I think, therefore I swim.' 🤔",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 1.7,
         rotationSpeed: 0.008
     },
@@ -140,7 +143,7 @@ const shrimpTypes = [
         color: "#228B22",
         description: "Tending to your underwater garden, you make the coral reef bloom with life! 🌿",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 1.6,
         rotationSpeed: 0.01
     },
@@ -149,7 +152,7 @@ const shrimpTypes = [
         color: "#8B4513",
         description: "Keeper of oceanic knowledge, you maintain the greatest collection of waterproof books! 📚",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 1.5,
         rotationSpeed: 0.007
     },
@@ -158,7 +161,7 @@ const shrimpTypes = [
         color: "#9400D3",
         description: "Dropping the hottest beats under the sea! Your parties are legendary! 🎧",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 1.9,
         rotationSpeed: 0.025
     },
@@ -167,7 +170,7 @@ const shrimpTypes = [
         color: "#FF1493",
         description: "Always dressed in the latest trends, you're the style icon of the reef! 👗",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 1.8,
         rotationSpeed: 0.015
     },
@@ -176,7 +179,7 @@ const shrimpTypes = [
         color: "#4682B4",
         description: "From sunken ships to submarine engines, you can fix anything! 🔧",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 2.1,
         rotationSpeed: 0.012
     },
@@ -185,7 +188,7 @@ const shrimpTypes = [
         color: "#8B4513",
         description: "Your seaweed lattes are famous throughout the seven seas! ☕",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 1.7,
         rotationSpeed: 0.011
     },
@@ -194,7 +197,7 @@ const shrimpTypes = [
         color: "#4B0082",
         description: "Capturing the beauty of marine life through your lens! 📸",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 1.6,
         rotationSpeed: 0.009
     },
@@ -203,7 +206,7 @@ const shrimpTypes = [
         color: "#8B8B83",
         description: "Discovering ancient treasures and lost civilizations beneath the waves! 🏺",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 1.8,
         rotationSpeed: 0.01
     },
@@ -212,7 +215,7 @@ const shrimpTypes = [
         color: "#483D8B",
         description: "Your verses flow like ocean currents, touching hearts across the sea! 📝",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 1.5,
         rotationSpeed: 0.008
     },
@@ -221,16 +224,16 @@ const shrimpTypes = [
         color: "#FF4500",
         description: "Defender of the deep! Always ready to save the day! 🦸‍♂️",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 2.2,
         rotationSpeed: 0.03
     },
     {
         name: "Gamer Shrimp",
         color: "#32CD32",
-        description: "Master of underwater arcade games and bubble-shooting simulators! 🎮",
+        description: "Master of underwater arcade games and bubble-shooting simulators! ",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 1.7,
         rotationSpeed: 0.015
     },
@@ -239,7 +242,7 @@ const shrimpTypes = [
         color: "#9932CC",
         description: "Exploring different eras through mysterious ocean portals! ⏰",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 1.9,
         rotationSpeed: 0.02
     },
@@ -248,7 +251,7 @@ const shrimpTypes = [
         color: "#4B0082",
         description: "Mastering the ancient arts of underwater magic! ✨",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 1.8,
         rotationSpeed: 0.018
     }
@@ -656,7 +659,7 @@ function addRainbowShrimp() {
         color: "#FF0000",
         description: "✨ LEGENDARY SHRIMP UNLOCKED! ✨\nYou're the mythical Rainbow Shrimp! Your magical presence brings joy and wonder to all the seas! 🌈",
         music: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
-        model: "/models/3dpea.com_obj_1_18.glb",
+        model: `${baseURL}/models/3dpea.com_obj_1_18.glb`,
         scale: 2.5,
         rotationSpeed: 0.025,
         isRainbow: true
