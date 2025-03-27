@@ -1,28 +1,17 @@
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-
-/* global TWEEN */  // Declare TWEEN as a global variable since we're using the CDN version
-
-// Three.js setup
-let scene, camera, renderer, currentShrimp;
+// Global variables
+let scene, camera, renderer, shrimp;
+let orbitSpeed = 0.008;
+let orbitRadius = 5;
+let orbitAngle = 0;
+let orbitDirection = 1;
 let audio = new Audio();
-const loader = new GLTFLoader();
+let isMuted = false;
+let shrimpHistory = [];
+let clickCount = 0;
 
 // Particles
 let particles;
 const particleCount = 1000;
-
-// Orbit parameters
-let orbitSpeed = 0.008;  // Increased base speed
-let orbitRadius = 5;
-let orbitAngle = 0;
-let orbitDirection = 1;  // Add direction multiplier
-
-// UI state
-let isMuted = false;
-let clickCount = 0;
-const shrimpHistory = [];
 
 // Rainbow effect for special shrimp
 let rainbowHue = 0;
@@ -350,30 +339,25 @@ function updateParticles() {
     particles.geometry.attributes.position.needsUpdate = true;
 }
 
+// Initialize Three.js scene
 function init() {
-    // Scene setup
     scene = new THREE.Scene();
     camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setClearColor(0x000000, 0);
+    renderer.setClearColor(0xf0f0f0); // Set default background color (light gray)
     document.getElementById('canvas-container').appendChild(renderer.domElement);
-
-    // Initial camera position
-    camera.position.set(0, 0, orbitRadius);
-    camera.lookAt(0, 0, 0);
 
     // Add lights
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
-
     const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    directionalLight.position.set(5, 5, 5);
+    directionalLight.position.set(0, 1, 1);
     scene.add(directionalLight);
 
-    const pointLight = new THREE.PointLight(0xffffff, 1, 100);
-    pointLight.position.set(-5, -5, -5);
-    scene.add(pointLight);
+    // Set initial camera position
+    camera.position.z = 5;
+    camera.position.y = 1;
 
     // Create particles
     createParticles();
@@ -469,7 +453,7 @@ function setupEventListeners() {
     });
 
     renderer.domElement.addEventListener('touchmove', (e) => {
-        if (!currentShrimp) return;
+        if (!shrimp) return;
         
         const deltaX = e.touches[0].pageX - touchStartX;
         const deltaY = e.touches[0].pageY - touchStartY;
@@ -509,12 +493,12 @@ function updateShrimp(shrimpType) {
     document.getElementById('previous-shrimp').classList.toggle('hidden', shrimpHistory.length <= 1);
 
     // Update background color with transition
-    const currentColor = new THREE.Color(document.body.style.backgroundColor || '#f0f0f0');
+    const currentColor = new THREE.Color(renderer.getClearColor());
     const targetColor = new THREE.Color(shrimpType.color);
     new TWEEN.Tween(currentColor)
         .to(targetColor, 1000)
         .onUpdate(() => {
-            document.body.style.backgroundColor = `#${currentColor.getHexString()}`;
+            renderer.setClearColor(currentColor);
         })
         .start();
 
@@ -540,11 +524,12 @@ function updateShrimp(shrimpType) {
 }
 
 function loadShrimpModel(modelPath, color, scale = 2) {
+    const loader = new THREE.GLTFLoader();
     loader.load(
         modelPath,
         (gltf) => {
-            if (currentShrimp) {
-                scene.remove(currentShrimp);
+            if (shrimp) {
+                scene.remove(shrimp);
             }
 
             const model = gltf.scene;
@@ -601,7 +586,7 @@ function loadShrimpModel(modelPath, color, scale = 2) {
                 originalY: 0
             };
             
-            currentShrimp = container;
+            shrimp = container;
 
             // Update UI
             document.getElementById('discover-button').disabled = false;
@@ -621,7 +606,7 @@ function loadShrimpModel(modelPath, color, scale = 2) {
 function animate() {
     requestAnimationFrame(animate);
 
-    if (currentShrimp) {
+    if (shrimp) {
         // Update camera position for orbit
         orbitAngle += orbitSpeed;
         
@@ -634,20 +619,20 @@ function animate() {
         camera.lookAt(0, 0, 0);
 
         // Apply bobbing motion
-        const bobOffset = currentShrimp.userData.bobOffset;
-        const bobHeight = currentShrimp.userData.bobHeight;
-        const bobSpeed = currentShrimp.userData.bobSpeed;
-        const originalY = currentShrimp.userData.originalY;
+        const bobOffset = shrimp.userData.bobOffset;
+        const bobHeight = shrimp.userData.bobHeight;
+        const bobSpeed = shrimp.userData.bobSpeed;
+        const originalY = shrimp.userData.originalY;
         
         // Calculate new Y position based on original position plus bobbing
-        currentShrimp.position.y = originalY + Math.sin(Date.now() * bobSpeed + bobOffset) * bobHeight;
+        shrimp.position.y = originalY + Math.sin(Date.now() * bobSpeed + bobOffset) * bobHeight;
 
         // Rainbow effect for special shrimp
         const currentShrimpType = shrimpHistory[shrimpHistory.length - 1];
         if (currentShrimpType && currentShrimpType.isRainbow) {
             rainbowHue = (rainbowHue + 0.01) % 1;
             const color = new THREE.Color().setHSL(rainbowHue, 1, 0.5);
-            currentShrimp.traverse((child) => {
+            shrimp.traverse((child) => {
                 if (child.isMesh) {
                     child.material.color = color;
                     child.material.emissive = color;
